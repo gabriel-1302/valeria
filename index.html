@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD de Pacientes</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fff0f5;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
             color: #333;
             margin: 0;
             padding: 20px;
         }
         h1 {
             text-align: center;
-            color: #ff69b4;
+            color: #007acc;
         }
         form {
             display: flex;
@@ -23,15 +23,15 @@
             gap: 10px;
             margin-bottom: 20px;
             padding: 20px;
-            background-color: #ffe4e1;
+            background-color: #e6f7ff;
             border-radius: 10px;
             max-width: 400px;
             margin: auto;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         label {
-            font-weight: 600;
-            color: #ff1493;
+            font-weight: bold;
+            color: #005b99;
         }
         input {
             padding: 10px;
@@ -43,14 +43,14 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #ff69b4;
+            background-color: #007acc;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #ff1493;
+            background-color: #005b99;
         }
         table {
             width: 100%;
@@ -63,14 +63,14 @@
             border-bottom: 1px solid #ddd;
         }
         th {
-            background-color: #ff69b4;
+            background-color: #007acc;
             color: white;
         }
         td {
-            background-color: #fffaf0;
+            background-color: #f9f9f9;
         }
         td button {
-            background-color: #ff6347;
+            background-color: #ff6666;
             color: white;
             padding: 5px 10px;
             border: none;
@@ -79,20 +79,20 @@
             transition: background-color 0.3s ease;
         }
         td button:hover {
-            background-color: #ff4500;
+            background-color: #cc0000;
         }
         td button:first-child {
-            background-color: #ff8c00;
+            background-color: #4caf50;
             margin-right: 5px;
         }
         td button:first-child:hover {
-            background-color: #ff6347;
+            background-color: #388e3c;
         }
     </style>
 </head>
 <body>
     <h1>CRUD de Pacientes</h1>
-    <h1>LAB Valeria Alexandra Cuellar Coca</h1>
+    <h1>LAB SIS 324 Velasquez Mendia Gabriel Adrian</h1>
     <form id="patientForm">
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
@@ -100,6 +100,8 @@
         <input type="number" id="age" name="age" required>
         <label for="condition">Condición:</label>
         <input type="text" id="condition" name="condition" required>
+        <label for="phone">Teléfono:</label>
+        <input type="tel" id="phone" name="phone" required>
         <button type="submit">Agregar Paciente</button>
     </form>
 
@@ -109,6 +111,7 @@
                 <th>Nombre</th>
                 <th>Edad</th>
                 <th>Condición</th>
+                <th>Teléfono</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -123,13 +126,14 @@
             const name = document.getElementById('name').value;
             const age = document.getElementById('age').value;
             const condition = document.getElementById('condition').value;
+            const phone = document.getElementById('phone').value;
 
-            addPatient(name, age, condition);
+            addPatient(name, age, condition, phone);
 
             document.getElementById('patientForm').reset();
         });
 
-        function addPatient(name, age, condition) {
+        function addPatient(name, age, condition, phone) {
             const tableBody = document.getElementById('patientTableBody');
             const row = document.createElement('tr');
 
@@ -137,6 +141,7 @@
                 <td>${name}</td>
                 <td>${age}</td>
                 <td>${condition}</td>
+                <td>${phone}</td>
                 <td>
                     <button onclick="editPatient(this)">Editar</button>
                     <button onclick="deletePatient(this)">Eliminar</button>
@@ -151,10 +156,12 @@
             const name = row.children[0].textContent;
             const age = row.children[1].textContent;
             const condition = row.children[2].textContent;
+            const phone = row.children[3].textContent;
 
             document.getElementById('name').value = name;
             document.getElementById('age').value = age;
             document.getElementById('condition').value = condition;
+            document.getElementById('phone').value = phone;
 
             row.remove();
         }
